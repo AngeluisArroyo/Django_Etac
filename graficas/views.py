@@ -1,50 +1,37 @@
 from django.shortcuts import render
 
-def grafica_view(request):
-    ''' 
-    datos para la grafica 
-    
+def get_graph_data():
+    """
+    Helper function to return sample data for graphs.
+    Returns:
+        A dictionary with sample graph data.
+    """
+    return [
+        {
+            'etiquetas': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            'datos': [5, 15, 10, 20, 25]
+        },
+        {
+            'etiquetas': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            'datos': [5, 15, 10, 20, 25]
+        },
+        {
+            'etiquetas': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            'datos': [268, 156, 250, 20, 25]
+        }
+    ]
+
+def graficas_view(request):
+    """
+    Render the graphs view with prepared data.
     Args:
-    requests (_type_): _descripcion_
-    ''' 
-    
-    etiquetas = ['Enero','Frebrero','Marzo','Abril','Mayo']
-    
-    datos = [5,15,10,20,25]
-    
-    return render (request,'graficas/graficas.html', {
-        'etiquetas':etiquetas,
-        'datos':datos
-    })
-def grafica_view_2(request):
-    ''' 
-    datos para la grafica 
-    
-    Args:
-    requests (_type_): _descripcion_
-    ''' 
-    
-    etiquetas = ['Enero','Frebrero','Marzo','Abril','Mayo']
-    
-    datos = [5,15,10,20,25]
-    
-    return render (request,'graficas/graficas_2.html', {
-        'etiquetas':etiquetas,
-        'datos':datos
-    })
-def grafica_view_3(request):
-    ''' 
-    datos para la grafica 
-    
-    Args:
-    requests (_type_): _descripcion_
-    ''' 
-    
-    etiquetas = ['Enero','Frebrero','Marzo','Abril','Mayo']
-    
-    datos = [50,150,100,200,300]
-    
-    return render (request,'graficas/graficas_3.html', {
-        'etiquetas':etiquetas,
-        'datos':datos
-    })
+        request: HTTP request object.
+    Returns:
+        Rendered HTML template with graph data.
+    """
+    graph_data = get_graph_data()
+    return render (request, 'graficas/graficas.html', {
+        'grafica1': graph_data[0],
+        'grafica2': graph_data[1],
+        'grafica3': graph_data[2],
+})
